@@ -217,6 +217,23 @@ public class EventDataQueryExpressionVisitorTest {
     }
     
     @Test
+    public void testFieldToFieldComparison() throws Exception {
+        String originalQuery = "FOO == BAR";
+        ASTJexlScript script = JexlASTHelper.parseJexlQuery(originalQuery);
+        final Map<String,ExpressionFilter> filter = EventDataQueryExpressionVisitor.getExpressionFilters(script, attrFactory);
+        assertNotNull(filter.get("FOO"));
+        assertNotNull(filter.get("BAR"));
+        
+        Key p1 = createKey("FOO", "anything");
+        Key p2 = createKey("BAR", "anything");
+        Key n1 = createKey("BAX", "foo");
+        
+        assertTrue(filter.get("FOO").apply(p1));
+        assertTrue(filter.get("BAR").apply(p2));
+        assertNull(filter.get("BAZ"));
+    }
+    
+    @Test
     public void testNegation() throws Exception {
         String originalQuery = "FOO != 'abc'";
         ASTJexlScript script = JexlASTHelper.parseJexlQuery(originalQuery);

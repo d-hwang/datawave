@@ -398,7 +398,20 @@ public class EventDataQueryExpressionVisitor extends BaseVisitor {
     
     protected void simpleValueFilter(JexlNode node) {
         final JexlASTHelper.IdentifierOpLiteral iol = JexlASTHelper.getIdentifierOpLiteral(node);
-        generateValueFilter(iol, false);
+        
+        if (iol != null) {
+            generateValueFilter(iol, false);
+        } else {
+            List<JexlASTHelper.IdentifierOpLiteral> identifiers = JexlASTHelper.getIdentifierOpLiteralForIdentifierToIdentifier(node);
+            if (identifiers != null) {
+                for (JexlASTHelper.IdentifierOpLiteral identifier : identifiers) {
+                    generateValueFilter(identifier, true);
+                }
+            } else {
+                // unable to set filters. throw NPE to match generateValueFilter()
+                throw new NullPointerException("Null IdentifierOpLiteral");
+            }
+        }
     }
     
     protected void simplePatternFilter(JexlNode node) {

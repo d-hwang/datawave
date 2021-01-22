@@ -336,6 +336,21 @@ public class JexlASTHelper {
     }
     
     /**
+     * Fetch the literal off of the grandchild safely. Return null if there's an exception.
+     * 
+     * @param node
+     * @return
+     */
+    @SuppressWarnings("rawtypes")
+    public static Object getLiteralValueSafely(JexlNode node) {
+        try {
+            return getLiteralValue(node);
+        } catch (NoSuchElementException nsee) {
+            return null;
+        }
+    }
+    
+    /**
      * Fetch the identifier off of the grandchild, removing a leading {@link #IDENTIFIER_PREFIX} if present. Throws an exception if there is no identifier This
      * identifier will be deconstructed
      * 
@@ -491,6 +506,26 @@ public class JexlASTHelper {
             node = node.jjtGetParent();
         }
         return node;
+    }
+    
+    public static List<IdentifierOpLiteral> getIdentifierOpLiteralForIdentifierToIdentifier(JexlNode node) {
+        if (node.jjtGetNumChildren() == 2) {
+            List<IdentifierOpLiteral> iols = Lists.newArrayList();
+            
+            JexlNode child1 = JexlASTHelper.dereference(node.jjtGetChild(0));
+            JexlNode child2 = JexlASTHelper.dereference(node.jjtGetChild(1));
+            
+            JexlNode normalizedLiteral = new ASTStringLiteral(ParserTreeConstants.JJTSTRINGLITERAL);
+            normalizedLiteral.image = ".*?";
+            if (child1 instanceof ASTIdentifier && child2 instanceof ASTIdentifier) {
+                iols.add(new IdentifierOpLiteral((ASTIdentifier) child1, node, normalizedLiteral));
+                iols.add(new IdentifierOpLiteral((ASTIdentifier) child2, node, normalizedLiteral));
+                
+                return iols;
+            }
+        }
+        
+        return null;
     }
     
     public static IdentifierOpLiteral getIdentifierOpLiteral(JexlNode node) {

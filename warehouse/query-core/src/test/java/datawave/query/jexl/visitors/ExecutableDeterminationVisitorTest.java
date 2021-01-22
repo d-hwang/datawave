@@ -5,13 +5,7 @@ import datawave.query.jexl.JexlASTHelper;
 import datawave.query.jexl.JexlNodeFactory;
 import datawave.query.util.MetadataHelper;
 import org.apache.accumulo.core.client.TableNotFoundException;
-import org.apache.commons.jexl2.parser.ASTJexlScript;
-import org.apache.commons.jexl2.parser.ASTReference;
-import org.apache.commons.jexl2.parser.ASTReferenceExpression;
-import org.apache.commons.jexl2.parser.JexlNode;
-import org.apache.commons.jexl2.parser.JexlNodes;
-import org.apache.commons.jexl2.parser.ParseException;
-import org.apache.commons.jexl2.parser.ParserTreeConstants;
+import org.apache.commons.jexl2.parser.*;
 import org.easymock.EasyMock;
 import org.easymock.EasyMockSupport;
 import org.junit.Assert;
@@ -559,5 +553,12 @@ public class ExecutableDeterminationVisitorTest extends EasyMockSupport {
         Assert.assertEquals(ExecutableDeterminationVisitor.STATE.EXECUTABLE, ExecutableDeterminationVisitor.getState(orNode, config, helper));
         
         verifyAll();
+    }
+    
+    @Test
+    public void testEvaluationOnlyReferenceNode() throws TableNotFoundException, ParseException {
+        // TODO update this test before committing
+        JexlNode query = ASTEvaluationOnly.create(JexlASTHelper.parseJexlQuery("FOO == BAR"));
+        // ExecutableDeterminationVisitor.getState(node, ...)
     }
 }
