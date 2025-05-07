@@ -19,7 +19,7 @@
     <properties>
         <datawave.webservice.namespace>http://webservice.datawave.nsa/v1</datawave.webservice.namespace>
         <version.datawave.base-rest-responses>4.0.0</version.datawave.base-rest-responses>
-        <version.datawave.metadata-utils>4.0.5</version.datawave.metadata-utils>
+        <version.datawave.metadata-utils>4.0.16</version.datawave.metadata-utils>
         <version.guava>31.1-jre</version.guava>
     </properties>
     <dependencyManagement>
