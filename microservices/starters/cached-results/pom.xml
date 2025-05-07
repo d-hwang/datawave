@@ -17,10 +17,10 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:https://github.com/NationalSecurityAgency/datawave-spring-boot-starter-cached-results.git</connection>
-        <developerConnection>scm:git:git@github.com:NationalSecurityAgency/datawave-spring-boot-starter-cached-results.git</developerConnection>
+        <connection>scm:git:https://github.com/NationalSecurityAgency/datawave.git</connection>
+        <developerConnection>scm:git:git@github.com:NationalSecurityAgency/datawave.git</developerConnection>
         <tag>HEAD</tag>
-        <url>https://github.com/NationalSecurityAgency/datawave-spring-boot-starter-cached-results</url>
+        <url>https://github.com/NationalSecurityAgency/datawave</url>
     </scm>
     <properties>
         <version.datawave>7.3.0</version.datawave>
@@ -169,4 +169,16 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>github-datawave</id>
+            <url>https://maven.pkg.github.com/NationalSecurityAgency/datawave</url>
+        </repository>
+    </repositories>
 </project>
