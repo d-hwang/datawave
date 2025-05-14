@@ -93,8 +93,9 @@ public class StreamingServiceTest extends AbstractQueryServiceTest {
 
         int pageNumber = 1;
 
-        Assertions.assertNotNull(response.getBody(), "expected response body: " + response);
-        List<DefaultEventQueryResponse> queryResponses = parseXMLBaseQueryResponses(response.getBody());
+        String body = response.getBody();
+        Assertions.assertNotNull("expected response body: " + response, body);
+        List<DefaultEventQueryResponse> queryResponses = parseXMLBaseQueryResponses(body);
         for (DefaultEventQueryResponse queryResponse : queryResponses) {
             // verify the query response
             // @formatter:off
@@ -209,8 +210,9 @@ public class StreamingServiceTest extends AbstractQueryServiceTest {
 
         int pageNumber = 1;
 
-        Assertions.assertNotNull(response.getBody(), "expected response body: " + response);
-        List<DefaultEventQueryResponse> queryResponses = parseXMLBaseQueryResponses(response.getBody());
+        String body = response.getBody();
+        Assertions.assertNotNull("expected response body: " + response, body);
+        List<DefaultEventQueryResponse> queryResponses = parseXMLBaseQueryResponses(body);
         for (DefaultEventQueryResponse queryResponse : queryResponses) {
             // verify the query response
             // @formatter:off

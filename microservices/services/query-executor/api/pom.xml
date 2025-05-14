@@ -19,7 +19,7 @@
     <properties>
         <datawave.webservice.namespace>http://webservice.datawave/v1</datawave.webservice.namespace>
         <version.datawave>7.3.0</version.datawave>
-        <version.datawave.base-rest-responses>4.0.0</version.datawave.base-rest-responses>
+        <version.datawave.base-rest-responses>4.0.1</version.datawave.base-rest-responses>
         <version.datawave.starter-query>1.0.5</version.datawave.starter-query>
     </properties>
     <dependencyManagement>
@@ -30,6 +30,24 @@
                 <version>${version.datawave.starter-query}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>gov.nsa.datawave.microservice</groupId>
+                <artifactId>spring-boot-starter-datawave-query</artifactId>
+                <version>${version.datawave.starter-query}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>gov.nsa.datawave.core</groupId>
+                <artifactId>base-rest-responses</artifactId>
+                <version>${version.datawave.base-rest-responses}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-reload4j</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>gov.nsa.datawave.core</groupId>
@@ -46,27 +64,16 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>gov.nsa.datawave.microservice</groupId>
-                <artifactId>base-rest-responses</artifactId>
-                <version>${version.datawave.base-rest-responses}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-reload4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>gov.nsa.datawave.core</groupId>
-            <artifactId>datawave-core-connection-pool</artifactId>
+            <artifactId>base-rest-responses</artifactId>
         </dependency>
         <dependency>
-            <groupId>gov.nsa.datawave.microservice</groupId>
-            <artifactId>base-rest-responses</artifactId>
+            <groupId>gov.nsa.datawave.core</groupId>
+            <artifactId>datawave-core-connection-pool</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>

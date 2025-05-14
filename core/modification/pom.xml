@@ -17,6 +17,10 @@
         </dependency>
         <dependency>
             <groupId>gov.nsa.datawave.core</groupId>
+            <artifactId>base-rest-responses</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>gov.nsa.datawave.core</groupId>
             <artifactId>datawave-core-common</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -31,8 +35,19 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>gov.nsa.datawave.microservice</groupId>
-            <artifactId>base-rest-responses</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
